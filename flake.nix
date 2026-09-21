@@ -1,25 +1,33 @@
 {
-  description = "NixOS from Scratch";
+  description = "NixOS configuration with Hyprland and Caelestia Shell";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-26.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
     home-manager = {
-      url = "github:nix-community/home-manager/release-26.05";
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    caelestia-shell = {
+      url = "github:caelestia-dots/shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }: {
+  outputs = { self, nixpkgs, home-manager, caelestia-shell, ... } @ inputs: {
     nixosConfigurations.nixarchy = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
+      specialArgs = { inherit inputs; };
       modules = [
-        ./configuration.nix
+        ./hosts/nixarchy
         home-manager.nixosModules.home-manager
         {
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            users.tony = import ./home.nix;
+            extraSpecialArgs = { inherit inputs; };
+            users.ani = import ./home.nix;
             backupFileExtension = "backup";
           };
         }

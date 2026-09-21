@@ -1,0 +1,12 @@
+{
+    "id": "caelestia-headsetcontrol",
+    "name": "Headset Battery",
+    "version": "1.0.0",
+    "description": "Displays headset battery status, charging state, and device telemetry using headsetcontrol on the sidebar",
+    "author": "Antigravity",
+    "entrypoint": "HeadsetBattery.qml",
+    "executable": "caelestia-headset",
+    "icon": "headphones",
+    "category": "hardware",
+    "tags": ["headset", "battery", "headsetcontrol", "sidebar"]
+}

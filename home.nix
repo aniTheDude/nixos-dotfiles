@@ -1,13 +1,14 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports = [
-    ./modules/neovim.nix
+    ./modules/home/caelestia.nix
+    ./modules/home/hyprland.nix
+    ./modules/home/neovim.nix
   ];
 
-  home.username = "tony";
-  home.homeDirectory = "/home/tony";
-  home.file.".config/qtile".source = ./config/qtile;
+  home.username = "ani";
+  home.homeDirectory = "/home/ani";
   home.stateVersion = "26.05";
 
   home.packages = with pkgs; [
@@ -20,12 +21,16 @@
     steam
   ];
 
-  programs.git.enable = true;
+  programs.git = {
+    enable = true;
+    userName = "Preston Shumway";
+    userEmail = "anidude98@gmail.com";
+  };
+
   programs.bash = {
     enable = true;
     shellAliases = {
-      btw = "echo i use nixos, btw";
+      btw = "echo i use nixos with hyprland & caelestia, btw";
     };
   };
-  
 }

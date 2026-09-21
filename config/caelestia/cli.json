@@ -1,0 +1,22 @@
+{
+  "toggles": {
+    "communication": {
+      "discord": {
+        "enable": true,
+        "match" : [{ "class": "discord" }],
+        "command": [".local/share/applications/discord.desktop"],
+        "move": true
+      }
+  },
+    "special": {
+      "steam": {
+        "enable": true,
+        "match": [{ "class": "steam" }],
+        "command": ["steam"],
+        "move": true
+      }
+    }
+  }
+}
+
+

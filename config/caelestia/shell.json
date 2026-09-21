@@ -1,0 +1,217 @@
+{
+    "appearance": {
+        "transparency": {
+            "enabled": true
+        }
+    },
+    "bar": {
+        "activeWindow": {
+            "compact": false,
+            "inverted": false
+        },
+        "clock": {
+            "background": true,
+            "showDate": true
+        },
+        "persistent": true,
+        "popouts": {
+            "statusIcons": true,
+            "tray": true
+        },
+        "statusIcons": [
+            {
+                "enabled": true,
+                "id": "lockStatus"
+            },
+            {
+                "enabled": true,
+                "id": "audio"
+            },
+            {
+                "enabled": true,
+                "id": "microphone"
+            },
+            {
+                "enabled": false,
+                "id": "kbLayout"
+            },
+            {
+                "enabled": false,
+                "id": "network"
+            },
+            {
+                "enabled": false,
+                "id": "bluetooth"
+            },
+            {
+                "enabled": true,
+                "id": "battery"
+            }
+        ],
+        "tray": {
+            "background": true,
+            "compact": false,
+            "recolour": true
+        },
+        "workspaces": {
+            "activeIndicator": true,
+            "activeTrail": false,
+            "occupiedBg": false,
+            "perMonitorWorkspaces": true
+        }
+    },
+    "launcher": {
+        "actions": [
+            {
+                "command": [
+                    "foot",
+                    "-a",
+                    "caelestia-keybinds",
+                    "-T",
+                    "Caelestia Keybinds",
+                    "caelestia-keybinds"
+                ],
+                "description": "Fuzzy search keybinds and trigger actions",
+                "icon": "keyboard",
+                "name": "Keybinds"
+            },
+            {
+                "command": [
+                    "autocomplete",
+                    "calc"
+                ],
+                "description": "Do simple math equations (powered by Qalc)",
+                "icon": "calculate",
+                "name": "Calculator"
+            },
+            {
+                "command": [
+                    "autocomplete",
+                    "scheme"
+                ],
+                "description": "Change the current colour scheme",
+                "icon": "palette",
+                "name": "Scheme"
+            },
+            {
+                "command": [
+                    "autocomplete",
+                    "wallpaper"
+                ],
+                "description": "Change the current wallpaper",
+                "icon": "image",
+                "name": "Wallpaper"
+            },
+            {
+                "command": [
+                    "autocomplete",
+                    "variant"
+                ],
+                "description": "Change the current scheme variant",
+                "icon": "colors",
+                "name": "Variant"
+            },
+            {
+                "command": [
+                    "caelestia",
+                    "wallpaper",
+                    "-r"
+                ],
+                "description": "Switch to a random wallpaper",
+                "icon": "casino",
+                "name": "Random"
+            },
+            {
+                "command": [
+                    "setMode",
+                    "light"
+                ],
+                "description": "Change the scheme to light mode",
+                "icon": "light_mode",
+                "name": "Light"
+            },
+            {
+                "command": [
+                    "setMode",
+                    "dark"
+                ],
+                "description": "Change the scheme to dark mode",
+                "icon": "dark_mode",
+                "name": "Dark"
+            },
+            {
+                "command": [
+                    "poweroff"
+                ],
+                "dangerous": true,
+                "description": "Shutdown the system",
+                "icon": "power_settings_new",
+                "name": "Shutdown"
+            },
+            {
+                "command": [
+                    "reboot"
+                ],
+                "dangerous": true,
+                "description": "Reboot the system",
+                "icon": "cached",
+                "name": "Reboot"
+            },
+            {
+                "command": [
+                    "logout"
+                ],
+                "dangerous": true,
+                "description": "Log out of the current session",
+                "icon": "exit_to_app",
+                "name": "Logout"
+            },
+            {
+                "command": [
+                    "loginctl",
+                    "lock-session"
+                ],
+                "description": "Lock the current session",
+                "icon": "lock",
+                "name": "Lock"
+            },
+            {
+                "command": [
+                    "suspendThenHibernate"
+                ],
+                "description": "Suspend then hibernate",
+                "icon": "bedtime",
+                "name": "Sleep"
+            },
+            {
+                "command": [
+                    "caelestia",
+                    "shell",
+                    "nexus",
+                    "open"
+                ],
+                "description": "Configure the shell",
+                "icon": "settings",
+                "name": "Settings"
+            }
+        ],
+        "useFuzzy": {
+            "apps": true
+        }
+    },
+    "nexus": {
+        "networkRescanInterval": 120000
+    },
+    "services": {
+        "defaultPlayer": "Mozilla zen",
+        "gpuType": "Generic"
+    },
+    "sidebar": {
+        "enabled": true
+    },
+    "utilities": {
+        "cards": {
+            "recorder": true
+        }
+    }
+}

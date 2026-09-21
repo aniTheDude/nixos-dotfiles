@@ -1,0 +1,12 @@
+{
+    "id": "caelestia-keybinds",
+    "name": "Keybinds",
+    "version": "1.0.0",
+    "description": "Interactive fuzzy keybinds searcher and trigger tool for Caelestia Shell and Hyprland",
+    "author": "Antigravity",
+    "entrypoint": "caelestia_keybinds.py",
+    "executable": "caelestia-keybinds",
+    "icon": "keyboard",
+    "category": "utilities",
+    "tags": ["keybinds", "shortcuts", "fzf", "hyprland", "launcher"]
+}
