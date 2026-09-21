@@ -5,6 +5,8 @@
     ./modules/home/caelestia.nix
     ./modules/home/hyprland.nix
     ./modules/home/neovim.nix
+    ./modules/home/cli.nix
+    ./modules/home/apps.nix
   ];
 
   home.username = "ani";
@@ -18,7 +20,6 @@
     nixpkgs-fmt
     nodejs
     gcc
-    steam
   ];
 
   programs.git = {

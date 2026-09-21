@@ -9,6 +9,12 @@
     "$HOME/.local/bin"
   ];
 
+  # Helper script to toggle secondary monitor
+  home.file.".local/bin/toggle-monitor.sh" = {
+    source = ../../config/hypr/scripts/toggle-monitor.sh;
+    executable = true;
+  };
+
   # Wayland session environment variables
   home.sessionVariables = {
     NIXOS_OZONE_WL = "1";

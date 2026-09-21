@@ -6,5 +6,7 @@
     ../../modules/system/base.nix
     ../../modules/system/hyprland.nix
     ../../modules/system/fonts.nix
+    ../../modules/system/hardware.nix
+    ../../modules/system/gaming.nix
   ];
 }

@@ -3,8 +3,8 @@
     "communication": {
       "discord": {
         "enable": true,
-        "match" : [{ "class": "discord" }],
-        "command": [".local/share/applications/discord.desktop"],
+        "match" : [{ "class": "discord" }, { "class": "vesktop" }],
+        "command": ["vesktop"],
         "move": true
       }
   },

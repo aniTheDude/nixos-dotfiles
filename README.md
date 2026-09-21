@@ -9,11 +9,15 @@ A declarative, modular NixOS flake configuration featuring the **Hyprland** Wayl
 * **Compositor**: [Hyprland](https://hypr.land/) (with UWSM session support and native Lua configuration)
 * **Desktop Shell**: [Caelestia Shell](https://github.com/caelestia-dots/shell) (Quickshell-based dynamic Material 3 panels, launcher, status bar, and wallpaper switcher)
 * **CLI Utility**: [Caelestia CLI](https://github.com/caelestia-dots/cli) (theming, special workspace toggles, and shell control)
+* **Hardware & Acceleration**: Intel Arc B580 Battlemage VA-API acceleration, AMD CPU microcode, ZRAM swap, and HeadsetControl udev rules
 * **Display Manager**: [Ly](https://github.com/fairyglade/ly) (lightweight, modern TUI login manager)
-* **Audio & Media**: PipeWire with WirePlumber, ALSA, PulseAudio emulation, and playerctl
-* **Portals**: `xdg-desktop-portal-hyprland` & `xdg-desktop-portal-gtk`
+* **Audio & Media**: PipeWire with WirePlumber, ALSA, PulseAudio emulation, EasyEffects, and playerctl
+* **Networking**: NetworkManager, Tailscale mesh VPN, and stateful firewall
+* **Gaming & Virtualization**: Steam (dedicated firewall rules), Feral GameMode, Gamescope, and Quickemu
+* **Terminal & CLI Suite**: Starship prompt, Direnv (+ nix-direnv), Zoxide, Eza, Bat, Yazi, Btop, Nvtop, Tmux, and Lazygit
+* **Desktop Applications**: Vesktop (Wayland Discord with screen/audio share), Obsidian, Thunar (with GVFS/trash), MPV, IMV, and OBS Studio
 * **Typography**: JetBrains Mono Nerd Font, Cascadia Code Nerd Font, Material Symbols, and Rubik
-* **Dotfiles**: Self-contained and reproducible within `config/` (includes custom keybind fuzzy searcher and headset battery monitoring plugins)
+* **Dotfiles**: Self-contained and reproducible within `config/` (includes custom keybind fuzzy searcher, monitor toggle script, and headset battery monitoring plugins)
 
 ---
 
@@ -22,7 +26,6 @@ A declarative, modular NixOS flake configuration featuring the **Hyprland** Wayl
 ```
 nixos-config/
 ├── flake.nix                       # Flake inputs (nixpkgs-unstable, home-manager, caelestia-shell)
-├── flake.lock                      # Flake lockfile
 ├── hosts/
 │   └── nixarchy/
 │       ├── default.nix             # Host definition (imports system modules & hardware)
@@ -31,14 +34,19 @@ nixos-config/
 │   ├── system/
 │   │   ├── base.nix                # Bootloader, networking, locale, user 'ani', nix settings
 │   │   ├── hyprland.nix            # Hyprland, Ly display manager, PipeWire, Polkit, portals
-│   │   └── fonts.nix               # Caelestia-required typography (Material Symbols, Rubik, NerdFonts)
+│   │   ├── fonts.nix               # Caelestia-required typography (Material Symbols, Rubik, NerdFonts)
+│   │   ├── hardware.nix            # Intel Arc GPU, AMD microcode, ZRAM swap, Headset udev, Tailscale
+│   │   └── gaming.nix              # Steam, GameMode, Gamescope, Quickemu
 │   └── home/
 │       ├── caelestia.nix           # Caelestia shell, CLI, and config linking
-│       ├── hyprland.nix            # Hyprland environment variables, PATH, user packages
+│       ├── hyprland.nix            # Hyprland session env, monitor toggle script, user packages
+│       ├── cli.nix                 # Starship, Direnv, Zoxide, Eza, Bat, Yazi, Btop, Lazygit
+│       ├── apps.nix                # Vesktop, Obsidian, Thunar, MPV, EasyEffects, OBS Studio
 │       └── neovim.nix              # Neovim configuration and LSP tooling
 ├── config/                         # Bundled, reproducible dotfiles
 │   ├── caelestia/                  # Caelestia shell.json, cli.json, hypr-vars.lua, plugins, monitors
-│   └── hypr/                       # Hyprland Lua dotfiles (hyprland.lua, keybinds, rules, animations)
+│   ├── hypr/                       # Hyprland Lua dotfiles & monitor toggle script
+│   └── starship.toml               # Custom Starship prompt configuration
 ├── home.nix                        # Main Home Manager entrypoint for user 'ani'
 ├── .gitignore                      # Git ignore rules
 └── README.md                       # Documentation & deployment guide
