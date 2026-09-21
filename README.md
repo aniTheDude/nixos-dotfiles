@@ -90,6 +90,13 @@ mkfs.ext4 -L nixos /dev/nvme0n1p2
 mount /dev/disk/by-label/nixos /mnt
 mkdir -p /mnt/boot
 mount /dev/disk/by-label/boot /mnt/boot
+
+# (Optional) Create and activate a swapfile on the target disk
+mkdir -p /mnt/var/lib
+dd if=/dev/zero of=/mnt/var/lib/swapfile bs=1M count=16384 status=progress
+chmod 0600 /mnt/var/lib/swapfile
+mkswap /mnt/var/lib/swapfile
+swapon /mnt/var/lib/swapfile
 ```
 
 ### 2. Generate Target Hardware Configuration
@@ -98,7 +105,13 @@ Generate the hardware specification for the target machine:
 # Clone your repo or clone temporarily
 nixos-generate-config --root /mnt
 ```
-Copy or commit the newly generated `/mnt/etc/nixos/hardware-configuration.nix` into your repository at `hosts/nixarchy/hardware-configuration.nix`.
+*Note: If you activated a swapfile above, `nixos-generate-config` will automatically detect it and include it in `/mnt/etc/nixos/hardware-configuration.nix`.*
+
+Copy the generated hardware config into your repository:
+```bash
+cp /mnt/etc/nixos/hardware-configuration.nix hosts/nixarchy/hardware-configuration.nix
+git add hosts/nixarchy/hardware-configuration.nix
+```
 
 ### 3. Install from GitHub Remotely
 Install NixOS directly using your GitHub flake:
@@ -113,6 +126,46 @@ reboot
 ```
 
 ---
+
+## 💾 Swapfile Configuration (Declarative & Post-Install)
+
+This configuration enables **ZRAM compressed RAM swap** by default (`modules/system/hardware.nix`), which handles fast, everyday memory compression directly in RAM.
+
+If you also want a **persistent on-disk swapfile** (for large workloads, heavy builds, or hibernation), you can configure it completely declaratively in NixOS without manual partitioning:
+
+### 1. Declarative NixOS Swapfile
+Add the swapfile definition to `hosts/nixarchy/hardware-configuration.nix` (or `modules/system/hardware.nix`):
+
+```nix
+swapDevices = [ {
+  device = "/var/lib/swapfile";
+  size = 16 * 1024; # 16 GB (size in megabytes)
+  priority = 10;    # Lower priority than ZRAM (100) so fast RAM compression is used first
+} ];
+```
+
+When you run `sudo nixos-rebuild switch --flake .#nixarchy`, NixOS will automatically:
+* Allocate `/var/lib/swapfile` with the exact requested size
+* Apply secure file permissions (`0600`)
+* Format it with `mkswap` and enable it via `swapon`
+
+### 2. Live USB Setup (Auto-detected during install)
+If you create the swapfile while mounted in the live installer:
+```bash
+mkdir -p /mnt/var/lib
+dd if=/dev/zero of=/mnt/var/lib/swapfile bs=1M count=16384 status=progress
+chmod 0600 /mnt/var/lib/swapfile
+mkswap /mnt/var/lib/swapfile
+swapon /mnt/var/lib/swapfile
+```
+Running `nixos-generate-config --root /mnt` will automatically detect the active swapfile and include it in `hardware-configuration.nix`.
+
+### ⚠️ Note on Btrfs
+If your root filesystem is Btrfs instead of ext4, copy-on-write (CoW) must be disabled on the swapfile. Use `btrfs filesystem mkswapfile` instead:
+```bash
+btrfs filesystem mkswapfile --size 16g /mnt/var/lib/swapfile
+swapon /mnt/var/lib/swapfile
+```
 
 ## 🔄 Daily Workflow & Local Rebuilding
 

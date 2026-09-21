@@ -31,7 +31,13 @@
     options = [ "fmask=0077" "dmask=0077" ];
   };
 
-  swapDevices = [ ];
+  # Optional persistent swapfile (complements ZRAM in modules/system/hardware.nix)
+  swapDevices = [
+    # {
+    #   device = "/var/lib/swapfile";
+    #   size = 16 * 1024; # 16 GB
+    # }
+  ];
 
   networking.useDHCP = lib.mkDefault true;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
