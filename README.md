@@ -10,7 +10,7 @@ A declarative, modular NixOS flake configuration featuring the **Hyprland** Wayl
 * **Desktop Shell**: [Caelestia Shell](https://github.com/caelestia-dots/shell) (Quickshell-based dynamic Material 3 panels, launcher, status bar, and wallpaper switcher)
 * **CLI Utility**: [Caelestia CLI](https://github.com/caelestia-dots/cli) (theming, special workspace toggles, and shell control)
 * **Hardware & Acceleration**: Intel Arc B580 Battlemage VA-API acceleration, AMD CPU microcode, ZRAM swap, and HeadsetControl udev rules
-* **Display Manager**: [Ly](https://github.com/fairyglade/ly) (lightweight, modern TUI login manager)
+* **Display Manager**: [Astra Airlock](https://github.com/AstraSuite/Airlock) (Caelestia-styled Material 3 Quickshell frontend for greetd)
 * **Audio & Media**: PipeWire with WirePlumber, ALSA, PulseAudio emulation, EasyEffects, and playerctl
 * **Networking**: NetworkManager, Tailscale mesh VPN, and stateful firewall
 * **Gaming & Virtualization**: Steam (dedicated firewall rules), Feral GameMode, Gamescope, and Quickemu
@@ -25,7 +25,7 @@ A declarative, modular NixOS flake configuration featuring the **Hyprland** Wayl
 
 ```
 nixos-config/
-├── flake.nix                       # Flake inputs (nixpkgs-unstable, home-manager, caelestia-shell)
+├── flake.nix                       # Flake inputs (nixpkgs-unstable, home-manager, caelestia-shell, astra-airlock)
 ├── hosts/
 │   └── nixarchy/
 │       ├── default.nix             # Host definition (imports system modules & hardware)
@@ -33,7 +33,7 @@ nixos-config/
 ├── modules/
 │   ├── system/
 │   │   ├── base.nix                # Bootloader, networking, locale, user 'ani', nix settings
-│   │   ├── hyprland.nix            # Hyprland, Ly display manager, PipeWire, Polkit, portals
+│   │   ├── hyprland.nix            # Hyprland, Astra Airlock (greetd), PipeWire, Polkit, portals
 │   │   ├── fonts.nix               # Caelestia-required typography (Material Symbols, Rubik, NerdFonts)
 │   │   ├── hardware.nix            # Intel Arc GPU, AMD microcode, ZRAM swap, Headset udev, Tailscale
 │   │   └── gaming.nix              # Steam, GameMode, Gamescope, Quickemu

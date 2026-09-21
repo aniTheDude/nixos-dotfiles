@@ -8,5 +8,6 @@
     ../../modules/system/fonts.nix
     ../../modules/system/hardware.nix
     ../../modules/system/gaming.nix
+    inputs.astra-airlock.nixosModules.default
   ];
 }

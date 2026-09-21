@@ -13,9 +13,14 @@
       url = "github:caelestia-dots/shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    astra-airlock = {
+      url = "github:AstraSuite/Airlock";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, caelestia-shell, ... } @ inputs: {
+  outputs = { self, nixpkgs, home-manager, caelestia-shell, astra-airlock, ... } @ inputs: {
     nixosConfigurations.nixarchy = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };

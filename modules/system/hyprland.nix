@@ -7,8 +7,14 @@
     withUWSM = true;
   };
 
-  # Display Manager: Ly (TUI display manager)
-  services.displayManager.ly.enable = true;
+  # Display Manager: Caelestia's preferred Astra Airlock (Material 3 Quickshell frontend for greetd)
+  services.greetd.astraAirlock = {
+    enable = true;
+    compositor = "cage";
+  };
+
+  # Greeter user permissions for Wayland display & input access
+  users.users.greeter.extraGroups = [ "video" "input" ];
 
   # XDG Desktop Portals
   xdg.portal = {
