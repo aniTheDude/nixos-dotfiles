@@ -48,13 +48,12 @@ nixos-config/
 
 ## 🚀 Setting Up Git & Pushing to GitHub
 
-1. **Create a new repository** on GitHub (e.g. `nixos-config`).
-2. **Add your remote**:
+1. **Add your remote**:
    ```bash
    cd ~/Projects/nixos-config
-   git remote add origin git@github.com:<your-github-username>/nixos-config.git
+   git remote set-url origin https://github.com/aniTheDude/nixos-dotfiles.git
    ```
-3. **Push the repository**:
+2. **Push the repository**:
    ```bash
    git branch -M main
    git push -u origin main
@@ -96,7 +95,7 @@ Copy or commit the newly generated `/mnt/etc/nixos/hardware-configuration.nix` i
 ### 3. Install from GitHub Remotely
 Install NixOS directly using your GitHub flake:
 ```bash
-nixos-install --flake github:<your-github-username>/nixos-config#nixarchy
+nixos-install --flake github:aniTheDude/nixos-dotfiles#nixarchy
 ```
 
 ### 4. Reboot
